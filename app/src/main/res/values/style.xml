@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ConnectEdit" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/EditColor_off</item>
+         <item name="colorControlActivated">@color/EditColor_on</item>
+    </style>
+</resources>

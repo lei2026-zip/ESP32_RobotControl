@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/box1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_main"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@color/Cursor"
+            ></ImageView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/box2"
+        android:layout_width="240dp"
+        android:minHeight="235dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="right"
+        android:paddingRight="20dp"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/re_sbr_control"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="-30dp"
+            android:layout_marginRight="-10dp"
+            android:layout_alignParentRight="true"
+            android:layout_above="@id/rt_btn_control"
+            android:layout_marginBottom="10dp"
+            >
+            <TextView
+                android:id="@+id/text_light"
+                android:layout_width="80dp"
+                android:text="亮度: 0%"
+                android:layout_below="@id/progress_light"
+                android:layout_marginLeft="42dp"
+                android:layout_marginTop="-25dp"
+                android:layout_height="wrap_content"></TextView>
+            <SeekBar
+                android:id="@+id/progress_light"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:max="100"
+                android:progress="0"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:fadeScrollbars="true"
+                android:progressBackgroundTint="@color/MainColorType">
+            </SeekBar>
+            <TextView
+                android:id="@+id/text_speed"
+                android:layout_marginTop="-25dp"
+                android:layout_below="@+id/progress_speed"
+                android:layout_width="80dp"
+                android:layout_marginLeft="42dp"
+                android:text="速度: 0%"
+                android:layout_height="wrap_content"></TextView>
+            <SeekBar
+                android:progressBackgroundTint="@color/MainColorType"
+                android:id="@+id/progress_speed"
+                android:layout_below="@id/progress_light"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="100dp"
+                android:max="100"
+                android:progress="0"
+                >
+
+            </SeekBar>
+        </RelativeLayout>
+
+<RelativeLayout
+    android:id="@+id/rt_btn_control"
+    android:layout_width="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="10dp"
+    android:paddingLeft="-50dp"
+    android:layout_height="220dp">
+    <Button
+        android:id="@+id/Control_btn1"
+        android:text="前进"
+        android:onClick="on_click_top"
+        android:textSize="20dp"
+        android:layout_width="120dp"
+        android:layout_below="@id/Control_btn4"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="-210dp"
+        android:background="@drawable/control_btn"
+        android:layout_height="50dp"></Button>
+    <Button
+        android:text="左转"
+        android:textSize="20dp"
+        android:onClick="on_click_left"
+        android:background="@drawable/control_btn"
+        android:id="@+id/Control_btn2"
+        android:layout_below="@id/Control_btn4"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="-150dp"
+        android:layout_width="50dp"
+        android:layout_height="80dp"></Button>
+    <Button
+        android:text="右转"
+        android:textSize="20dp"
+        android:onClick="on_click_right"
+        android:background="@drawable/control_btn"
+        android:id="@+id/Control_btn3"
+        android:layout_below="@id/Control_btn4"
+        android:layout_width="50dp"
+        android:layout_marginTop="-150dp"
+        android:layout_marginLeft="120dp"
+        android:layout_height="80dp"></Button>
+    <Button
+        android:text="后退"
+        android:textSize="20dp"
+        android:background="@drawable/control_btn"
+        android:id="@+id/Control_btn4"
+        android:layout_alignParentBottom="true"
+        android:layout_width="120dp"
+        android:layout_marginTop="90dp"
+        android:onClick="on_click_bottom"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="50dp"></Button>
+</RelativeLayout>
+</RelativeLayout>
+
+
+</RelativeLayout>

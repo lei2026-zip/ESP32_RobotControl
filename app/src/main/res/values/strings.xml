@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name" translatable="false">RobotControl</string>
+    <string name="app_Version" translatable="false">RobotControl V1.0</string>
+</resources>
