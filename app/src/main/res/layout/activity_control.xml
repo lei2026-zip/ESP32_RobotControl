@@ -3,19 +3,28 @@
     android:layout_width="match_parent"
     android:gravity="center_vertical"
     android:layout_height="match_parent">
+
+<!-- 视频显示区-->
     <RelativeLayout
         android:id="@+id/box1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/img_main"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:background="@color/Cursor"
-            ></ImageView>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:paddingRight="210dp"
+            android:background="@color/Cursor"></ImageView>
 
     </RelativeLayout>
-
+<!--
+  滑块
+-->
     <RelativeLayout
         android:id="@+id/box2"
         android:layout_width="240dp"
@@ -75,62 +84,64 @@
 
             </SeekBar>
         </RelativeLayout>
-
-<RelativeLayout
-    android:id="@+id/rt_btn_control"
-    android:layout_width="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentRight="true"
-    android:layout_marginRight="10dp"
-    android:paddingLeft="-50dp"
-    android:layout_height="220dp">
-    <Button
-        android:id="@+id/Control_btn1"
-        android:text="前进"
-        android:onClick="on_click_top"
-        android:textSize="20dp"
-        android:layout_width="120dp"
-        android:layout_below="@id/Control_btn4"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="-210dp"
-        android:background="@drawable/control_btn"
-        android:layout_height="50dp"></Button>
-    <Button
-        android:text="左转"
-        android:textSize="20dp"
-        android:onClick="on_click_left"
-        android:background="@drawable/control_btn"
-        android:id="@+id/Control_btn2"
-        android:layout_below="@id/Control_btn4"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="-150dp"
-        android:layout_width="50dp"
-        android:layout_height="80dp"></Button>
-    <Button
-        android:text="右转"
-        android:textSize="20dp"
-        android:onClick="on_click_right"
-        android:background="@drawable/control_btn"
-        android:id="@+id/Control_btn3"
-        android:layout_below="@id/Control_btn4"
-        android:layout_width="50dp"
-        android:layout_marginTop="-150dp"
-        android:layout_marginLeft="120dp"
-        android:layout_height="80dp"></Button>
-    <Button
-        android:text="后退"
-        android:textSize="20dp"
-        android:background="@drawable/control_btn"
-        android:id="@+id/Control_btn4"
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp">
+        </RelativeLayout>
+        <!--按键-->
+        <RelativeLayout
+        android:id="@+id/rt_btn_control"
+        android:layout_width="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_width="120dp"
-        android:layout_marginTop="90dp"
-        android:onClick="on_click_bottom"
-        android:layout_marginLeft="50dp"
-        android:layout_marginBottom="10dp"
-        android:layout_height="50dp"></Button>
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="-50dp"
+        android:layout_height="220dp">
+        <Button
+            android:id="@+id/Control_btn1"
+            android:text="前进"
+            android:onClick="on_click_top"
+            android:textSize="20dp"
+            android:layout_width="120dp"
+            android:layout_below="@id/Control_btn4"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="-210dp"
+            android:background="@drawable/control_btn"
+            android:layout_height="50dp"></Button>
+        <Button
+            android:text="左转"
+            android:textSize="20dp"
+            android:onClick="on_click_left"
+            android:background="@drawable/control_btn"
+            android:id="@+id/Control_btn2"
+            android:layout_below="@id/Control_btn4"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="-150dp"
+            android:layout_width="50dp"
+            android:layout_height="80dp"></Button>
+        <Button
+            android:text="右转"
+            android:textSize="20dp"
+            android:onClick="on_click_right"
+            android:background="@drawable/control_btn"
+            android:id="@+id/Control_btn3"
+            android:layout_below="@id/Control_btn4"
+            android:layout_width="50dp"
+            android:layout_marginTop="-150dp"
+            android:layout_marginLeft="120dp"
+            android:layout_height="80dp"></Button>
+        <Button
+            android:text="后退"
+            android:textSize="20dp"
+            android:background="@drawable/control_btn"
+            android:id="@+id/Control_btn4"
+            android:layout_alignParentBottom="true"
+            android:layout_width="120dp"
+            android:layout_marginTop="90dp"
+            android:onClick="on_click_bottom"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="50dp"></Button>
+        </RelativeLayout>
 </RelativeLayout>
-</RelativeLayout>
-
-
 </RelativeLayout>

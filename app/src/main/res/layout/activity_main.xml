@@ -17,19 +17,21 @@
         android:drawablePadding="20dp"
         android:textSize="25dp"
         android:layout_height="wrap_content"
-        android:hint="192.168.0.1"
+        android:hint="192.168.4.1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:textAlignment="center"
         android:paddingBottom="13dp"
-        android:inputType="textPostalAddress"
+        android:inputType="text"
         android:textCursorDrawable="@color/Cursor"
+        android:text="192.168.4.1"
         style="@style/ConnectEdit"
         android:maxLines="1"
         ></EditText>
 
         <EditText
             android:id="@+id/edit_part"
+            android:text="8080"
             style="@style/ConnectEdit"
             android:layout_width="100dp"
             android:layout_height="wrap_content"

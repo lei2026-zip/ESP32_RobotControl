@@ -1,89 +1,84 @@
 package com.example.SocketServer;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.nio.Buffer;
 
 public class Socket {
-    private int server_port;
-    private InetAddress server_IP;
-    public static DatagramSocket socket = null;
-    public void Socket_init(InetAddress ip,int part){
-        server_IP = ip;
-        server_port = part;
-        // 3.创建DatagramSocket对象
-        try {
-            socket = new DatagramSocket();
-        } catch (SocketException e) {
-            e.printStackTrace();
-        }
-        return;
+    private InetAddress ip;
+    private int port;
+    private DatagramPacket sendpacket;  //发送包
+    public DatagramPacket receivepacket;  //接收包
+    public DatagramSocket  socket=null;
+    //IP port 目标ip port; timeout 最大响应等待时间,超时发生中断,用于receive UDP接收
+    public void SockInit(InetAddress IP,int Port,int timeout) throws SocketException {
+        ip = IP;
+        port = Port;
+        socket = new DatagramSocket(8080);
+        socket.setSoTimeout(timeout);
     }
-    public byte[] Socket_rec(){
-        /*
-         * 接收服务器端响应的数据
-         */
-        // 1.创建数据报，用于接收服务器端响应的数据
-        byte[] data2 = new byte[1024];
-        DatagramPacket packet2 = new DatagramPacket(data2, data2.length);
-        // 2.接收服务器响应的数据
-        try {
-            socket.receive(packet2);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-        // 3.读取数据
-        String reply = new String(data2, 0, packet2.getLength());
-        // 4.关闭资源
-        return data2;
+    public void SendData(byte[] buff) throws IOException {
+        sendpacket = new DatagramPacket(buff,buff.length,ip,port);
+        socket.send(sendpacket);
     }
 
-    public void Socket_send(byte[] data){
-        // 2.创建数据报，包含发送的数据信息
-        DatagramPacket packet = new DatagramPacket(data, data.length,server_IP, server_port);
-        // 4.向服务器端发送数据报
-        try {
-            socket.send(packet);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ;
-        }
+    public byte[] RecData(int datasize) throws IOException {
+        byte[] buff  = new byte[datasize];
+        receivepacket = new DatagramPacket(buff,datasize);
+        socket.receive(receivepacket);
+        System.out.println("BufferSize:"+receivepacket.getLength());
+        return buff;
     }
+    public byte[] UDPgetimage(int packagesize) throws IOException {
+        byte[] UdpBuffer;
+        int PackageSize;  //数据包大小
+        int PackageLen=0;
+        int Packageid=0;   //数据包序号
+        int Packageidnow=0;
+        int PackageCount = 0; //数据包数量
+        int frameSize=0;   //图像大小
+        int frameSizenow = 0;
+        int frameSizeOk=0;
+        int frameid;    //帧id
+        int frameidnow=0;
+        byte[] FrameBuffer=null;
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        do {
+            UdpBuffer = RecData(packagesize);
+            frameid =  (UdpBuffer[1] << 24) + (UdpBuffer[2] << 16) + (UdpBuffer[3] << 8) + UdpBuffer[4]; //获取帧号
+            frameSize = (UdpBuffer[5] << 24) + (UdpBuffer[6] << 16) + (UdpBuffer[7] << 8) + UdpBuffer[8]; //获取帧大小
+            Packageid = UdpBuffer[10]; //获取包号
+            PackageSize = (UdpBuffer[13] << 8) + UdpBuffer[14]; //获取包体积
+            if (frameidnow != frameid) { //换帧，记录新一帧的数据信息
+                frameidnow = frameid;    //更新帧号
+                frameSizenow = frameSize;  //更新帧体积
+                PackageCount = UdpBuffer[9];   //更新数据包数量
+                PackageLen = (UdpBuffer[11] << 8) + UdpBuffer[12];  //更新数据包长度
+                frameSizeOk = 0 ;  //清除当前帧已接收数据量
+                Packageidnow = 0;    //最新已接收数据包号清零
+                FrameBuffer = null;  //清空图片数据缓存
+            }
+            if((Packageid<=PackageCount)&&(Packageid>Packageidnow)){
+                 if(PackageSize==(UdpBuffer.length-15)){
+                     if(PackageSize==PackageLen||Packageid==PackageCount){
+                         Packageidnow = Packageid;
+                         os.write(UdpBuffer);
+                         frameSizeOk+=PackageSize;
+                     }
+                 }
+            }
+            if(frameSizeOk==frameSizenow){
+
+            }
+        }while (true);
+    }
+    public static byte[] subBytes(byte[] src, int begin, int count) {
+        byte[] bs = new byte[count];
+        System.arraycopy(src, begin, bs, 0, count);
+        return bs;
+    }
+
 }
-//class UPDServer {
-//    public static void main(String[] args) throws IOException {
-//        /*
-//         * 接收客户端发送的数据
-//         */
-//        // 1.创建服务器端DatagramSocket，指定端口
-//        DatagramSocket socket = new DatagramSocket(12345);
-//        // 2.创建数据报，用于接收客户端发送的数据
-//        byte[] data = new byte[1024];// 创建字节数组，指定接收的数据包的大小
-//        DatagramPacket packet = new DatagramPacket(data, data.length);
-//        // 3.接收客户端发送的数据
-//        System.out.println("****服务器端已经启动，等待客户端发送数据");
-//        socket.receive(packet);// 此方法在接收到数据报之前会一直阻塞
-//        // 4.读取数据
-//        String info = new String(data, 0, packet.getLength());
-//        System.out.println("我是服务器，客户端说：" + info);
-//
-//        /*
-//         * 向客户端响应数据
-//         */
-//        // 1.定义客户端的地址、端口号、数据
-//        InetAddress address = packet.getAddress();
-//        int port = packet.getPort();
-//        byte[] data2 = "欢迎您!".getBytes();
-//        // 2.创建数据报，包含响应的数据信息
-//        DatagramPacket packet2 = new DatagramPacket(data2, data2.length, address, port);
-//        // 3.响应客户端
-//        socket.send(packet2);
-//        // 4.关闭资源
-//        socket.close();
-//    }
-//}
