@@ -134,9 +134,15 @@ public class MainActivity extends Activity {
                                           System.out.println(info);
                                           res_response = true;
                                       }
-                                  } catch (IOException e) {
+                                  }catch (java.net.SocketTimeoutException timeout){
                                       tries++;
                                       System.out.println("第" + tries + "次重试中..");
+                                  }
+                                  catch (IOException e) {
+                                      Message msg2 =new Message();
+                                      msg2.obj = "连接错误!";
+                                      mHandler.sendMessage(msg2);
+                                      return;
                                   }
                               } while ((!res_response) && (tries < maxtries));
                               if (res_response) {

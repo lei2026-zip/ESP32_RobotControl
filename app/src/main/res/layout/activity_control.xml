@@ -23,7 +23,7 @@
 
     </RelativeLayout>
 <!--
-  滑块
+  control
 -->
     <RelativeLayout
         android:id="@+id/box2"
@@ -34,6 +34,44 @@
         android:gravity="right"
         android:paddingRight="20dp"
         android:layout_height="match_parent">
+<!--        开关-->
+        <RelativeLayout
+            android:id="@+id/re_sw_control"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_above="@id/re_sbr_control">
+
+            <Switch
+                android:id="@+id/nth_switch1"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="80dp"></Switch>
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@id/nth_switch1"
+                android:layout_marginLeft="-90dp"
+                android:text="SW1"
+                android:textSize="20dp"></TextView>
+
+            <Switch
+                android:id="@+id/nth_switch2"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@id/nth_switch1"
+                android:layout_marginLeft="40dp"></Switch>
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="-50dp"
+                android:layout_marginBottom="0dp"
+                android:layout_toLeftOf="@id/nth_switch2"
+                android:textSize="20dp"
+                android:text="SW2"></TextView>
+        </RelativeLayout>
+<!--     seekbar 滑块   -->
         <RelativeLayout
             android:id="@+id/re_sbr_control"
             android:layout_width="200dp"
@@ -42,7 +80,6 @@
             android:layout_marginRight="-10dp"
             android:layout_alignParentRight="true"
             android:layout_above="@id/rt_btn_control"
-            android:layout_marginBottom="10dp"
             >
             <TextView
                 android:id="@+id/text_light"
@@ -81,7 +118,6 @@
                 android:max="100"
                 android:progress="0"
                 >
-
             </SeekBar>
         </RelativeLayout>
         <RelativeLayout
@@ -90,58 +126,59 @@
         </RelativeLayout>
         <!--按键-->
         <RelativeLayout
-        android:id="@+id/rt_btn_control"
-        android:layout_width="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:paddingLeft="-50dp"
-        android:layout_height="220dp">
-        <Button
-            android:id="@+id/Control_btn1"
-            android:text="前进"
-            android:onClick="on_click_top"
-            android:textSize="20dp"
-            android:layout_width="120dp"
-            android:layout_below="@id/Control_btn4"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="-210dp"
-            android:background="@drawable/control_btn"
-            android:layout_height="50dp"></Button>
-        <Button
-            android:text="左转"
-            android:textSize="20dp"
-            android:onClick="on_click_left"
-            android:background="@drawable/control_btn"
-            android:id="@+id/Control_btn2"
-            android:layout_below="@id/Control_btn4"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="-150dp"
-            android:layout_width="50dp"
-            android:layout_height="80dp"></Button>
-        <Button
-            android:text="右转"
-            android:textSize="20dp"
-            android:onClick="on_click_right"
-            android:background="@drawable/control_btn"
-            android:id="@+id/Control_btn3"
-            android:layout_below="@id/Control_btn4"
-            android:layout_width="50dp"
-            android:layout_marginTop="-150dp"
-            android:layout_marginLeft="120dp"
-            android:layout_height="80dp"></Button>
-        <Button
-            android:text="后退"
-            android:textSize="20dp"
-            android:background="@drawable/control_btn"
-            android:id="@+id/Control_btn4"
+            android:id="@+id/rt_btn_control"
+            android:layout_width="175dp"
+            android:layout_height="213dp"
+            android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_width="120dp"
-            android:layout_marginTop="90dp"
-            android:onClick="on_click_bottom"
-            android:layout_marginLeft="50dp"
-            android:layout_marginBottom="10dp"
-            android:layout_height="50dp"></Button>
+            android:layout_marginBottom="5dp"
+            >
+
+
+            <Button
+                android:id="@+id/Control_btn1"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/Control_btn4"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="-210dp"
+                android:background="@drawable/control_btn"
+                android:text="前进"
+                android:textSize="20dp"></Button>
+
+            <Button
+                android:id="@+id/Control_btn2"
+                android:layout_width="50dp"
+                android:layout_height="80dp"
+                android:layout_below="@id/Control_btn4"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="-150dp"
+                android:background="@drawable/control_btn"
+                android:text="左转"
+                android:textSize="20dp"></Button>
+
+            <Button
+                android:id="@+id/Control_btn3"
+                android:layout_width="50dp"
+                android:layout_height="80dp"
+                android:layout_below="@id/Control_btn4"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="-150dp"
+                android:background="@drawable/control_btn"
+                android:text="右转"
+                android:textSize="20dp"></Button>
+
+            <Button
+                android:id="@+id/Control_btn4"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="90dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/control_btn"
+                android:text="后退"
+                android:textSize="20dp"></Button>
         </RelativeLayout>
 </RelativeLayout>
 </RelativeLayout>

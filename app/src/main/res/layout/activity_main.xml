@@ -60,15 +60,16 @@
            android:layout_marginLeft="25dp"
            android:layout_below="@id/edit_part"
            ></Button>
+
         <ImageView
-            android:layout_width="200dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="190dp"
             android:layout_height="200dp"
-            android:src="@drawable/ic_stm32"
             android:layout_below="@id/btn_connect"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/ic_img"
             android:scaleType="fitCenter"
-            >
-        </ImageView>
+            ></ImageView>
+
     </RelativeLayout>
     <RelativeLayout
         android:layout_alignParentBottom="true"

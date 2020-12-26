@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.PixelFormat;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 
 public class ImgDispose {
@@ -67,6 +68,25 @@ public class ImgDispose {
             else
                 return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         return null;
+    }
+
+    /**
+     * 图像翻转
+     * @param a
+     * @return
+     */
+    public static Bitmap convert(Bitmap a) {
+        int w = a.getWidth();
+        int h = a.getHeight();
+        Bitmap newb = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);// 创建一个新的和SRC长度宽度一样的位图
+        Canvas cv = new Canvas(newb);
+        Matrix m = new Matrix();
+        m.postScale(1, -1);   //镜像垂直翻转
+      //  m.postScale(-1, 1);   //镜像水平翻转
+       // m.postRotate(-180);  //旋转-90度
+        Bitmap new2 = Bitmap.createBitmap(a, 0, 0, w, h, m, true);
+        cv.drawBitmap(new2, new Rect(0, 0, new2.getWidth(), new2.getHeight()),new Rect(0, 0, w, h), null);
+        return newb;
     }
 
     /**
